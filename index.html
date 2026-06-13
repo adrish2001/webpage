@@ -1,1 +1,684 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>华夏探险家 | 中国青少年研学旅行</title>
+  <!-- Google Fonts: modern, playful, readable -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 (free) for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fef9f0;
+      color: #1e2a2f;
+      scroll-behavior: smooth;
+      line-height: 1.4;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* Buttons & interactive */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #ff7a2f;
+      color: white;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 12px 28px;
+      border-radius: 60px;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      box-shadow: 0 8px 18px rgba(255, 122, 47, 0.25);
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn i {
+      font-size: 1.1rem;
+    }
+
+    .btn:hover {
+      background: #e05f1a;
+      transform: translateY(-3px);
+      box-shadow: 0 15px 25px rgba(255, 122, 47, 0.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid #ff7a2f;
+      color: #ff7a2f;
+      box-shadow: none;
+    }
+
+    .btn-outline:hover {
+      background: #ff7a2f;
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    /* Header nav */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #e65c1e, #f6b352);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.5px;
+    }
+
+    .logo span {
+      background: none;
+      color: #ff7a2f;
+      -webkit-background-clip: unset;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      font-weight: 600;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #2c3e2f;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #ff7a2f;
+    }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      padding: 40px 0 60px;
+    }
+
+    .hero-content {
+      flex: 1;
+    }
+
+    .hero-badge {
+      background: #ffede3;
+      color: #ff6b2c;
+      display: inline-block;
+      padding: 6px 16px;
+      border-radius: 40px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin-bottom: 20px;
+    }
+
+    .hero-content h1 {
+      font-size: 3.4rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      color: #1f2f2c;
+    }
+
+    .hero-content h1 .highlight {
+      color: #ff7a2f;
+      border-bottom: 4px solid #ffd966;
+    }
+
+    .hero-desc {
+      font-size: 1.2rem;
+      color: #4a5b55;
+      margin-bottom: 32px;
+      max-width: 90%;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 28px;
+      margin-top: 28px;
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stat-number {
+      font-weight: 800;
+      font-size: 1.8rem;
+      color: #ff7a2f;
+    }
+
+    .hero-image {
+      flex: 1;
+      border-radius: 40px;
+      overflow: hidden;
+      box-shadow: 0 30px 40px -20px rgba(0, 0, 0, 0.2);
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    /* Featured trips / Highlights section */
+    .section-title {
+      text-align: center;
+      font-size: 2.3rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+      color: #1e2a2f;
+    }
+
+    .section-sub {
+      text-align: center;
+      color: #5f7670;
+      margin-bottom: 48px;
+      font-size: 1.2rem;
+    }
+
+    .grid-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .trip-card {
+      background: white;
+      border-radius: 32px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+    }
+
+    .trip-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 35px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-img {
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s;
+    }
+
+    .trip-card:hover .card-img img {
+      transform: scale(1.05);
+    }
+
+    .card-content {
+      padding: 24px;
+    }
+
+    .card-tag {
+      background: #ffede3;
+      color: #ff6b2c;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+
+    .card-content h3 {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+    }
+
+    .card-content p {
+      color: #5a6f68;
+      margin-bottom: 20px;
+      line-height: 1.4;
+    }
+
+    .features {
+      display: flex;
+      gap: 16px;
+      font-size: 0.85rem;
+      color: #2c5a47;
+      font-weight: 500;
+    }
+
+    .features i {
+      margin-right: 4px;
+      color: #ff7a2f;
+    }
+
+    /* Itinerary preview */
+    .itinerary {
+      background: #fff6ed;
+      border-radius: 48px;
+      padding: 60px 40px;
+      margin: 60px 0;
+    }
+
+    .itinerary-steps {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      justify-content: space-between;
+      margin-top: 30px;
+    }
+
+    .step {
+      flex: 1;
+      min-width: 180px;
+      background: white;
+      border-radius: 28px;
+      padding: 24px 20px;
+      text-align: center;
+      box-shadow: 0 12px 20px rgba(0, 0, 0, 0.03);
+      transition: 0.2s;
+    }
+
+    .step-number {
+      background: #ff7a2f20;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 60px;
+      font-weight: 800;
+      font-size: 1.6rem;
+      color: #ff7a2f;
+      margin: 0 auto 16px;
+    }
+
+    /* Why us section */
+    .why-us {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 50px;
+      align-items: center;
+      margin: 60px 0;
+    }
+
+    .why-text {
+      flex: 1;
+    }
+
+    .why-text h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .feature-list {
+      list-style: none;
+      margin-top: 20px;
+    }
+
+    .feature-list li {
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 500;
+    }
+
+    .feature-list i {
+      color: #ff7a2f;
+      font-size: 1.4rem;
+      width: 28px;
+    }
+
+    .why-image {
+      flex: 1;
+      border-radius: 36px;
+      overflow: hidden;
+      box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .why-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* CTA Banner */
+    .cta-banner {
+      background: linear-gradient(125deg, #ff7a2f, #f9b43a);
+      border-radius: 48px;
+      padding: 56px 48px;
+      text-align: center;
+      color: white;
+      margin: 40px 0 60px;
+    }
+
+    .cta-banner h2 {
+      font-size: 2.3rem;
+      margin-bottom: 16px;
+    }
+
+    .cta-banner p {
+      font-size: 1.2rem;
+      opacity: 0.95;
+      margin-bottom: 28px;
+    }
+
+    .btn-light {
+      background: white;
+      color: #ff7a2f;
+      box-shadow: none;
+    }
+
+    .btn-light:hover {
+      background: #fff2e6;
+      transform: translateY(-3px);
+      color: #d35400;
+    }
+
+    /* testimonial simple */
+    .testimonial {
+      background: white;
+      border-radius: 32px;
+      padding: 40px;
+      margin: 40px 0;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+      text-align: center;
+    }
+
+    .testimonial i {
+      font-size: 2.8rem;
+      color: #ffc107;
+      margin-bottom: 16px;
+    }
+
+    .testimonial p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 20px;
+      font-style: italic;
+    }
+
+    /* Footer */
+    footer {
+      background: #1f2f2c;
+      color: #e2e8e4;
+      padding: 40px 0 20px;
+      border-radius: 40px 40px 0 0;
+      margin-top: 40px;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .footer-col h4 {
+      color: #ffbc7a;
+      margin-bottom: 20px;
+    }
+
+    .footer-col p, .footer-col a {
+      color: #cbdcd6;
+      text-decoration: none;
+      line-height: 1.8;
+    }
+
+    .social-icons a {
+      color: white;
+      margin-right: 18px;
+      font-size: 1.4rem;
+      transition: 0.2s;
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 40px;
+      margin-top: 20px;
+      border-top: 1px solid #3f5a54;
+      font-size: 0.85rem;
+    }
+
+    /* mobile */
+    @media (max-width: 860px) {
+      .container {
+        padding: 0 24px;
+      }
+      .hero-content h1 {
+        font-size: 2.4rem;
+      }
+      .navbar {
+        flex-direction: column;
+        gap: 16px;
+      }
+      .hero-desc {
+        max-width: 100%;
+      }
+      .hero-stats {
+        justify-content: flex-start;
+      }
+      .section-title {
+        font-size: 1.9rem;
+      }
+      .cta-banner {
+        padding: 36px 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="navbar">
+      <div class="logo">✨ 华夏探险家 <span>｜Teen Trek</span></div>
+      <div class="nav-links">
+        <a href="#trips">目的地</a>
+        <a href="#itinerary">行程亮点</a>
+        <a href="#why">为什么选我们</a>
+        <a href="#contact" class="btn-outline" style="padding: 8px 18px; border-radius: 40px;">咨询报名</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- Hero section -->
+  <div class="container">
+    <div class="hero">
+      <div class="hero-content">
+        <div class="hero-badge"><i class="fas fa-map-marked-alt"></i> 2026 夏季首发 · 火热招募</div>
+        <h1>穿越山河，<span class="highlight">野性成长</span><br>属于Z世代的研学远征</h1>
+        <p class="hero-desc">深入中国秘境·解锁地理人文·团队挑战·自然科考 — 这不是一次普通旅行，而是一场蜕变冒险。</p>
+        <a href="#" class="btn"><i class="fas fa-arrow-right"></i> 立即锁定名额</a>
+        <div class="hero-stats">
+          <div class="stat-item"><span class="stat-number">12+</span><span>秘境路线</span></div>
+          <div class="stat-item"><span class="stat-number">2000+</span><span>少年探险家</span></div>
+          <div class="stat-item"><span class="stat-number">100%</span><span>安全保障</span></div>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="https://picsum.photos/id/104/700/500" alt="Teens hiking in China mountains" style="width:100%; height:auto; object-fit:cover;">
+        <!-- 注：演示图片，实际可替换为真实团队照片。图片展现青春探险氛围 -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Featured trip cards -->
+  <div class="container" id="trips">
+    <div class="section-title">🔥 热门探险路线</div>
+    <div class="section-sub">专为13-18岁青少年设计 · 沉浸式 + 硬核技能</div>
+    <div class="grid-cards">
+      <div class="trip-card">
+        <div class="card-img"><img src="https://picsum.photos/id/15/400/250" alt="Great Wall hiking"></div>
+        <div class="card-content">
+          <span class="card-tag"><i class="fas fa-mountain"></i> 户外领袖营</span>
+          <h3>长城内外·荒野长城</h3>
+          <p>徒步明代野长城，星空露营，定向越野，学习古长城历史与地质考察。</p>
+          <div class="features"><span><i class="fas fa-calendar-alt"></i> 7天6晚</span><span><i class="fas fa-users"></i> 15-20人团</span></div>
+        </div>
+      </div>
+      <div class="trip-card">
+        <div class="card-img"><img src="https://picsum.photos/id/29/400/250" alt="Guilin Karst"></div>
+        <div class="card-content">
+          <span class="card-tag"><i class="fas fa-water"></i> 自然科考</span>
+          <h3>桂林阳朔·喀斯特探险</h3>
+          <p>溶洞地质勘探，漓江生态保护，攀岩挑战+竹筏水文实验，收获科考证书。</p>
+          <div class="features"><span><i class="fas fa-calendar-alt"></i> 6天5晚</span><span><i class="fas fa-microscope"></i> 科研实践</span></div>
+        </div>
+      </div>
+      <div class="trip-card">
+        <div class="card-img"><img src="https://picsum.photos/id/96/400/250" alt="Yunnan rice terraces"></div>
+        <div class="card-content">
+          <span class="card-tag"><i class="fas fa-leaf"></i> 文化传承</span>
+          <h3>云南·哈尼梯田与雨林</h3>
+          <p>哈尼族村落调研，热带雨林夜观，生物多样性课堂，亲手体验梯田插秧。</p>
+          <div class="features"><span><i class="fas fa-calendar-alt"></i> 8天7晚</span><span><i class="fas fa-camera"></i> 摄影大赛</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Itinerary preview highlights -->
+  <div class="container" id="itinerary">
+    <div class="itinerary">
+      <div class="section-title" style="margin-bottom: 8px;">🗺️ 每日冒险缩影</div>
+      <div class="section-sub">不止于走马观花，每一天都有新的突破</div>
+      <div class="itinerary-steps">
+        <div class="step"><div class="step-number">1</div><h4>开营工作坊</h4><p>破冰+安全课堂+探险目标设定</p></div>
+        <div class="step"><div class="step-number">2</div><h4>野外生存实训</h4><p>搭建帐篷、过滤水源、地图与指北针</p></div>
+        <div class="step"><div class="step-number">3</div><h4>核心徒步挑战</h4><p>穿越原始森林/峡谷，自然笔记</p></div>
+        <div class="step"><div class="step-number">4</div><h4>在地文化访问</h4><p>非遗工坊/乡村学校交流/民族美食</p></div>
+        <div class="step"><div class="step-number">5</div><h4>科学实验站</h4><p>水质检测、植物标本、星空观测</p></div>
+      </div>
+      <div style="text-align: center; margin-top: 32px;">
+        <a href="#" class="btn-outline" style="padding: 10px 28px;"><i class="fas fa-download"></i> 下载完整行程手册</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Why us Section -->
+  <div class="container" id="why">
+    <div class="why-us">
+      <div class="why-text">
+        <h2>为什么青少年探险家 <br>都选择我们？</h2>
+        <ul class="feature-list">
+          <li><i class="fas fa-shield-alt"></i> <strong>1:5 导师配比</strong> — 户外教练+心理学老师全程陪同</li>
+          <li><i class="fas fa-chalkboard-user"></i> <strong>沉浸式项目制学习</strong> — 获得研学证书+综评素材</li>
+          <li><i class="fas fa-hand-holding-heart"></i> <strong>安全体系升级</strong> — 随队医疗、保险、应急车24h待命</li>
+          <li><i class="fas fa-tree"></i> <strong>独家保护区合作</strong> — 不对外开放的自然教育基地</li>
+          <li><i class="fas fa-smile"></i> <strong>同龄社交 + 成长反馈</strong> — 行程结束专属成长报告</li>
+        </ul>
+        <div style="margin-top: 24px;">
+          <a href="#" class="btn"><i class="fab fa-weixin"></i> 领取早鸟优惠</a>
+        </div>
+      </div>
+      <div class="why-image">
+        <img src="https://picsum.photos/id/133/500/400" alt="group of teens teamwork">
+      </div>
+    </div>
+  </div>
+
+  <!-- Testimonial -->
+  <div class="container">
+    <div class="testimonial">
+      <i class="fas fa-quote-right"></i>
+      <p>“原本担心孩子独立能力，结果回来以后更有自信，还交到了来自全国的朋友！ 华夏探险家的领队非常专业，连家委都佩服安全细节。” </p>
+      <h4>— 上海王妈妈，14岁学员家长</h4>
+      <div style="color:#ff7a2f; margin-top: 12px;">★★★★★</div>
+    </div>
+  </div>
+
+  <!-- CTA Banner -->
+  <div class="container">
+    <div class="cta-banner">
+      <h2>出发吧，少年探险家！</h2>
+      <p>这个假期，与志同道合的伙伴一起成长，挑战自我边界。<br>仅限前50名赠送户外探险礼包 + 定制冲锋衣。</p>
+      <a href="#" class="btn btn-light"><i class="fas fa-ticket-alt"></i> 立即占位 & 获取行程</a>
+    </div>
+  </div>
+</main>
+
+<footer id="contact">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-col">
+        <h4>华夏探险家 · 青少年研学</h4>
+        <p><i class="fas fa-map-pin"></i> 北京·上海·成都 运营中心</p>
+        <p><i class="fas fa-phone-alt"></i> 400 882 7710</p>
+        <p><i class="fas fa-envelope"></i> adventure@teentrek.cn</p>
+      </div>
+      <div class="footer-col">
+        <h4>快速链接</h4>
+        <p><a href="#">关于我们</a></p>
+        <p><a href="#">安全保障手册</a></p>
+        <p><a href="#">过往营地相册</a></p>
+        <p><a href="#">常见问题</a></p>
+      </div>
+      <div class="footer-col">
+        <h4>官方社群</h4>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-weixin"></i></a>
+          <a href="#"><i class="fab fa-weibo"></i></a>
+          <a href="#"><i class="fab fa-tiktok"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p style="margin-top: 20px;">📱 扫码添加顾问 → 获取早鸟折扣码</p>
+      </div>
+    </div>
+    <div class="copyright">
+      © 2026 华夏探险家 TeenTrek · 专注中国青少年探索教育 | 让每次出发都成为成长的勋章
+    </div>
+  </div>
+</footer>
+
+<!-- simple smooth scroll behavior & demo interaction -->
+<script>
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href');
+      if (targetId === "#" || targetId === "") return;
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        e.preventDefault();
+        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // Add simple console message for playful spirit
+  console.log("🚀 华夏探险家 — 勇敢的少年快去创造奇迹！");
+</script>
+</body>
+</html>
